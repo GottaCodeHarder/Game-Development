@@ -8,7 +8,8 @@
 
 fileLoader::fileLoader() : j1Module()
 {
-	
+	PHYSFS_File file;
+	int size;
 }
 
 fileLoader:: ~fileLoader()
@@ -19,6 +20,42 @@ fileLoader:: ~fileLoader()
 bool fileLoader:: Init()
 {
 	PHYSFS_init(NULL);
+	return true;
+}
+
+bool fileLoader::FirstRead(const char* filename)
+{
+	PHYSFS_File *file = PHYSFS_openRead(filename);
+	if (file == NULL)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool fileLoader::GetSize(int size, PHYSFS_File *file)
+{
+	size = PHYSFS_fileLength(file);
+	if (size == NULL)
+	{
+		return false;
+	}
+	return true;
+}
+
+bool fileLoader::Read(int size, PHYSFS_File *file)
+{
+	PHYSFS_read(file, *render, size, 1); // revisar render y emmagatzemar
+	return true;
+}
+
+bool fileLoader::Close(int size, PHYSFS_File *file)
+{
+	PHYSFS_close(file);
+	if (PHYSFS_close(file) == 0)
+	{
+		return false;
+	}
 	return true;
 }
 

@@ -10,6 +10,10 @@ public:
 	~fileLoader();
 	bool Init();
 	bool CleanUp();
+	bool FirstRead(const char* filename);
+	bool GetSize(int size, PHYSFS_File *file);
+	bool Read(int size, PHYSFS_File *file);
+	bool Close(int size, PHYSFS_File *file);
 
 	bool LoadFile();
 };
