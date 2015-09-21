@@ -1,0 +1,18 @@
+<!-- Config file for the game -->
+
+<config>
+	<filesystem>
+		<ORGANIZATION> "My Awesome Studio" </ORGANIZATION> 
+		<APPNAME> "My cool game" </APPNAME>
+	</filesystem>
+	<window>
+		<R_FULLSCREEN> false </R_FULLSCREEN>
+		<R_BORDERLESS> false </R_BORDERLESS>
+		<R_FULLSCR_WINDOWED> false </R_FULLSCR_WINDOWED>
+		<R_RESIZABLE> false </R_RESIZABLE>
+		<SCREEN_WIDTH> 640 </SCREEN_WIDTH>
+		<SCREEN_HEIGHT> 480 </SCREEN_HEIGHT>
+	</window>
+
+	<name>My super awesome game with XML</name>
+</config>
