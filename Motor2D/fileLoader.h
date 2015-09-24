@@ -2,6 +2,9 @@
 #define __FILELOADER_H__
 
 #include "j1Module.h"
+#include "PhysFS/include/physfs.h"
+
+struct SDL_RWops;
 
 class fileLoader : public j1Module
 {
@@ -15,6 +18,7 @@ public:
 	bool Read(int size, PHYSFS_File *file);
 	bool Close(int size, PHYSFS_File *file);
 
+	SDL_RWops* Load(const char* file);
 	bool LoadFile();
 };
 

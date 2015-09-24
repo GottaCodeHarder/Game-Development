@@ -10,8 +10,9 @@
 		<R_BORDERLESS> false </R_BORDERLESS>
 		<R_FULLSCR_WINDOWED> false </R_FULLSCR_WINDOWED>
 		<R_RESIZABLE> false </R_RESIZABLE>
-		<SCREEN_WIDTH> 640 </SCREEN_WIDTH>
-		<SCREEN_HEIGHT> 480 </SCREEN_HEIGHT>
+    <SCALE value="1"/>
+    <SCREEN_WIDTH value="640"/>
+    <SCREEN_HEIGHT value="480"/>
 	</window>
 
 	<name>My super awesome game with XML</name>

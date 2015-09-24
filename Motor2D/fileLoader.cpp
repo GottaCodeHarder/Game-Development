@@ -45,8 +45,15 @@ bool fileLoader::GetSize(int size, PHYSFS_File *file)
 
 bool fileLoader::Read(int size, PHYSFS_File *file)
 {
-	PHYSFS_read(file, *render, size, 1); // revisar render y emmagatzemar
+	char *buffer;
+	buffer = new char[PHYSFS_fileLength(file)];
+	int lenghtRead = PHYSFS_read(file, buffer, 1, size); // revisar render y emmagatzemar
 	return true;
+}
+
+SDL_RWops* fileLoader::Load(const char* file)
+{
+
 }
 
 bool fileLoader::Close(int size, PHYSFS_File *file)

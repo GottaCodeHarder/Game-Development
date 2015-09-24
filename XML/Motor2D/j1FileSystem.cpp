@@ -32,8 +32,11 @@ bool j1FileSystem::Awake()
 	LOG("Loading File System");
 	bool ret = true;
 
+	const char* org = App->config.child("ORGANIZATION").attribute("value").name();
+	const char* app = App->config.child("APPNAME").attribute("value").name();
+
 	// Ask SDL for a write dir
-	char* write_path = SDL_GetPrefPath(ORGANIZATION, APPNAME);
+	char* write_path = SDL_GetPrefPath(org, app);
 
 	if(PHYSFS_setWriteDir(write_path) == 0)
 		LOG("File System error while creating write dir: %s\n", PHYSFS_getLastError());
