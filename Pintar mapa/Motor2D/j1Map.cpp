@@ -276,27 +276,40 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 	return ret;
 }
 
-	bool j1Map::LoadHeaderDataLayer(pugi::xml_node& node, layer* layer)
+	bool j1Map::LoadHeaderDataLayer(pugi::xml_node& node, layer* layerm)
 	{
 		bool ret = true;
 
-		layer->name = node.attribute("name").as_string();
-		layer->height = node.attribute("height").as_uint();
-		layer->width = node.attribute("width").as_uint();
+		layerm->name = node.attribute("name").as_string();
+		layerm->height = node.attribute("height").as_uint();
+		layerm->width = node.attribute("width").as_uint();
 
-		layer->data = new unsigned int [layer->width*layer->height];
+		layerm->data = new unsigned int [layerm->width*layerm->height];
 
-		memset(layer->data, 0, (sizeof(int)*(layer->width*layer->height)));
+		memset(layerm->data, 0, (sizeof(int)*(layerm->width*layerm->height)));
 
 		pugi::xml_node map;
 
-		layer->width*layer->height;
+		layerm->width*layerm->height;
 
 		for (map = map.child("data").child("tile"); map && ret; map = map.next_sibling("tile"))
 		{
-			layer->data [] = node.attribute("gid").as_int();
+			layer* set2 = new layer();
+			
+			if (ret == true)
+			{
+				ret = LoadHeaderDataLayer(map, set2);
+			}
+
+			if (ret == true)
+			{
+				ret = LoadHeaderDataLayer(map, set2);
+			}
+
+			data.layers.add(set2);
+
 		}
-		delete[] layer->data;
+		delete[] layerm->data;
 		return ret;
 	}
 
