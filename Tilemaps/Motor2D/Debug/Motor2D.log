@@ -1,33 +1,66 @@
-﻿Compilación iniciada a las 28/09/2015 11:40:50.
-     1>Proyecto "D:\Users\samuelns\Desktop\Dev_class4_handout\Motor2D\Motor2D.vcxproj" en el nodo 2 (Build destinos).
+﻿Compilación iniciada a las 02/10/2015 10:23:21.
+     1>Proyecto "D:\Users\samuelns\Desktop\Game Development\Tilemaps\Motor2D\Motor2D.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt j1App.cpp j1Map.cpp j1Scene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _ITERATOR_DEBUG_LEVEL=0 /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt j1FileSystem.cpp j1Main.cpp j1App.cpp j1Audio.cpp j1Input.cpp j1Map.cpp j1Scene.cpp p2Log.cpp j1Render.cpp j1Textures.cpp j1Window.cpp PugiXml\src\pugixml.cpp
+         pugixml.cpp
+         j1Window.cpp
+         j1Textures.cpp
+         j1Render.cpp
+         p2Log.cpp
+         j1Scene.cpp
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(36): error C2955: 'p2DynArray' : el uso de clase plantilla requiere una lista de argumentos de plantilla
+                 d:\users\samuelns\desktop\game development\tilemaps\motor2d\p2dynarray.h(14) : vea la declaración de 'p2DynArray'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2039: 'config' : no es un miembro de 'j1App'
+                 d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1app.h(19) : vea la declaración de 'j1App'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.child' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.attribute' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.name' debe tener class/struct/union
          j1Map.cpp
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.h(36): error C2955: 'p2DynArray' : el uso de clase plantilla requiere una lista de argumentos de plantilla
-                 d:\users\samuelns\desktop\dev_class4_handout\motor2d\p2dynarray.h(14) : vea la declaración de 'p2DynArray'
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.cpp(47): error C2514: 'j1Map::tilemap' : la clase no tiene constructores
-                 d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.h(85) : vea la declaración de 'j1Map::tilemap'
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.cpp(48): error C2678: '~' binario : no se encontró un operador que adopte un operando en la parte izquierda de tipo 'tileset' (o bien no existe una conversión aceptable)
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(36): error C2955: 'p2DynArray' : el uso de clase plantilla requiere una lista de argumentos de plantilla
+                 d:\users\samuelns\desktop\game development\tilemaps\motor2d\p2dynarray.h(14) : vea la declaración de 'p2DynArray'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2039: 'config' : no es un miembro de 'j1App'
+                 d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1app.h(19) : vea la declaración de 'j1App'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.child' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.attribute' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.name' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(47): error C2514: 'tilemap' : la clase no tiene constructores
+                 d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(27) : vea la declaración de 'tilemap'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(48): error C2678: '~' binario : no se encontró un operador que adopte un operando en la parte izquierda de tipo 'tileset' (o bien no existe una conversión aceptable)
                  c:\program files (x86)\windows kits\8.1\include\um\winuser.h(15085): puede ser 'ORIENTATION_PREFERENCE operator ~(ORIENTATION_PREFERENCE)'
                  c:\program files (x86)\windows kits\8.1\include\um\winuser.h(15063): o       'AR_STATE operator ~(AR_STATE)'
                  al hacer coincidir la lista de argumentos '(tileset)'
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.cpp(79): error C2065: 'hello' : identificador no declarado
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.cpp(79): error C2228: el operando izquierdo de '.tmx' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(65): error C2065: 'config' : identificador no declarado
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(65): error C2228: el operando izquierdo de '.child' debe tener class/struct/union
                  el tipo es 'unknown-type'
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.cpp(80): error C2143: error de sintaxis : falta ';' delante de '.'
-         Generando código...
-         Compilando...
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(65): error C2228: el operando izquierdo de '.load_buffer' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(81): error C2065: 'config' : identificador no declarado
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(81): error C2228: el operando izquierdo de '.child' debe tener class/struct/union
+                 el tipo es 'unknown-type'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(81): error C2228: el operando izquierdo de '.attribute' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(81): error C2228: el operando izquierdo de '.as_string' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(83): error C2273: 'conversión de estilo de función' : no es válido como lado derecho del operador '->'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(85): error C2065: 'config' : identificador no declarado
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(85): error C2228: el operando izquierdo de '.child' debe tener class/struct/union
+                 el tipo es 'unknown-type'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(85): error C2228: el operando izquierdo de '.attribute' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(85): error C2228: el operando izquierdo de '.as_string' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.cpp(87): error C2273: 'conversión de estilo de función' : no es válido como lado derecho del operador '->'
+         j1Input.cpp
+         j1Audio.cpp
          j1App.cpp
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.h(36): error C2955: 'p2DynArray' : el uso de clase plantilla requiere una lista de argumentos de plantilla
-                 d:\users\samuelns\desktop\dev_class4_handout\motor2d\p2dynarray.h(14) : vea la declaración de 'p2DynArray'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(36): error C2955: 'p2DynArray' : el uso de clase plantilla requiere una lista de argumentos de plantilla
+                 d:\users\samuelns\desktop\game development\tilemaps\motor2d\p2dynarray.h(14) : vea la declaración de 'p2DynArray'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2065: 'App' : identificador no declarado
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2227: el operando izquierdo de '->config' debe señalar al tipo class/struct/union/generic
+                 el tipo es 'unknown-type'
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.child' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.attribute' debe tener class/struct/union
+     1>d:\users\samuelns\desktop\game development\tilemaps\motor2d\j1map.h(28): error C2228: el operando izquierdo de '.name' debe tener class/struct/union
+         j1Main.cpp
+         j1FileSystem.cpp
          Generando código...
-         Compilando...
-         j1Scene.cpp
-     1>d:\users\samuelns\desktop\dev_class4_handout\motor2d\j1map.h(36): error C2955: 'p2DynArray' : el uso de clase plantilla requiere una lista de argumentos de plantilla
-                 d:\users\samuelns\desktop\dev_class4_handout\motor2d\p2dynarray.h(14) : vea la declaración de 'p2DynArray'
-         Generando código...
-     1>Compilación del proyecto terminada "D:\Users\samuelns\Desktop\Dev_class4_handout\Motor2D\Motor2D.vcxproj" (Build destinos) -- ERROR.
+     1>Compilación del proyecto terminada "D:\Users\samuelns\Desktop\Game Development\Tilemaps\Motor2D\Motor2D.vcxproj" (Build destinos) -- ERROR.
 
 ERROR al compilar.
 
-Tiempo transcurrido 00:00:03.17
+Tiempo transcurrido 00:00:10.45

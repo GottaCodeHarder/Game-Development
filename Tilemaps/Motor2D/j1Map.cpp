@@ -62,7 +62,7 @@ bool j1Map::Load(const char* file_name)
 
 	char* buf;
 	int size = App->fs->Load(tmp.GetString(), &buf);
-	pugi::xml_parse_result result = map_file.load_buffer(buf, size);
+	pugi::xml_parse_result result = config.child.load_buffer(buf, size);
 
 	RELEASE(buf);
 
@@ -78,11 +78,11 @@ bool j1Map::Load(const char* file_name)
 		// all your map data
 
 		mapa->mapversion = map_file.child("mapversion").attribute("value").as_float();
-		if (map_file.child("orientation").attribute("value").as_string() == "ortogonal")
+		if (config.child("orientation").attribute("value").as_string() == "ortogonal")
 		{
 			mapa->orientation = 1;
 		}
-		else if (map_file.child("orientation").attribute("value").as_string() == "isometric")
+		else if (config.child("orientation").attribute("value").as_string() == "isometric")
 		{
 			mapa->orientation = 2;
 		}
