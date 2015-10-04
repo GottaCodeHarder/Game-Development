@@ -26,4 +26,12 @@
     <folder>maps/</folder>
   </map>
 
+<map version="1.0"
+orientation="orthogonal"
+renderorder="right-down"
+width="50"
+height="15"
+tilewidth="32"
+tileheight="32"
+nextobjectid="1">
 </config>

@@ -44,10 +44,15 @@ bool j1Map::CleanUp()
 
 	// TODO 2: Make sure you clean up any memory allocated
 	// from tilesets / map
-	~tilemap();
-	~tileset();
 	// Remove all tilesets
+	p2List_item<tileset*>* item;
+	item = mapa->tileset.Trim.start;
 
+	while (item != NULL)
+	{
+		RELEASE(item->data);
+		item = item->next;
+	}
 
 	map_file.reset();
 
@@ -62,41 +67,95 @@ bool j1Map::Load(const char* file_name)
 
 	char* buf;
 	int size = App->fs->Load(tmp.GetString(), &buf);
-	pugi::xml_parse_result result = config.child.load_buffer(buf, size);
+	pugi::xml_parse_result result = map_file.load_buffer(buf, size);
 
 	RELEASE(buf);
 
-	if(result == NULL)
+	if (result == NULL)
 	{
 		LOG("Could not load map xml file %s. pugi error: %s", file_name, result.description());
 		ret = false;
 	}
 
-	if(ret == true)
+	if (ret == true)
 	{
 		// TODO 3: Create and call a private function to load and fill
 		// all your map data
 
 		mapa->mapversion = map_file.child("mapversion").attribute("value").as_float();
-		if (config.child("orientation").attribute("value").as_string() == "ortogonal")
+
+		p2SString orientation = map_file.child("orientation").attribute("value").as_string();
+		if (orientation == "ortogonal")
 		{
-			mapa->orientation = 1;
+			mapa->oritype = orthogonal;
 		}
-		else if (config.child("orientation").attribute("value").as_string() == "isometric")
+		else if (orientation == "isometric")
 		{
-			mapa->orientation = 2;
+			mapa->oritype = isometric;
 		}
-		
+		else if (orientation == "staggered")
+		{
+			mapa->oritype = isometricStaggered;
+		}
+		else
+		{
+			mapa->oritype = unknown;
+		}
+
+		p2SString renderorder = map_file.child("renderorder").attribute("value").as_string();
+		if (renderorder == "right-down")
+		{
+			mapa->renderord = rightDown;
+		}
+		else if (renderorder == "right-up")
+		{
+			mapa->renderord = rightUp;
+		}
+		else if (renderorder == "left-down")
+		{
+			mapa->renderord = leftDown;
+		}
+		else if (renderorder == "left-up")
+		{
+			mapa->renderord = leftUp;
+		}
+		else
+		{
+			mapa->oritype = unknown;
+		}
+
+		mapa->width = map_file.child("width").attribute("value").as_uint();
+		mapa->height = map_file.child("height").attribute("value").as_uint();
+		mapa->tilewidth = map_file.child("tilewidth").attribute("value").as_uint();
+		mapa->tileheight = map_file.child("tileheight").attribute("value").as_uint();
+		mapa->nextojectid = map_file.child("nextobjectid").attribute("value").as_uint();
+
 	}
 
 	// TODO 4: Create and call a private function to load a tileset
 	// remember to support more any number of tilesets!
-	
+
 
 	// TODO 5: LOG all the data loaded
 	// iterate all tilesets and LOG everything
 
-	map_loaded = ret;
+	if (ret == true)
+	{
+		LOG("Successfully parsed map XML file: %s", map_file);
+		LOG("width: %d height: %d", mapa->width, mapa->height);
+		LOG("tile_width: %d tile_height: %d", mapa->tilewidth, mapa->tileheight);
 
-	return ret;
+		p2List_item<tileset*>* item = mapa->tileset.Trim.start;
+		while (item != NULL)
+		{
+			tileset* s = item->data;
+			LOG("Tileset ----");
+			LOG("name: %s firstgid: %d", s->name.GetString(), s->firstgid);
+			LOG("tile width: %d tile height: %d", s->tilewidth, s->tileheight);
+			LOG("spacing: %d margin: %d", s->spacing, s->margin);
+			item = item->next;
+		}
+
+		return ret;
+	}
 }
