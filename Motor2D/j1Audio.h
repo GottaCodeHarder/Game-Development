@@ -14,11 +14,13 @@ public:
 
 	j1Audio();
 
+	int volume;
+
 	// Destructor
 	virtual ~j1Audio();
 
 	// Called before render is available
-	bool Awake();
+	bool Awake(pugi::xml_node&);
 
 	// Called before quitting
 	bool CleanUp();
@@ -32,9 +34,12 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
+	// Change the value of Volume
+	void ChangeVolume(bool plusorminus);
+
 private:
 
-	_Mix_Music*			music;
+	_Mix_Music*			music = NULL;
 	p2List<Mix_Chunk*>	fx;
 };
 

@@ -59,14 +59,4 @@ inline const char* const PATH(const char* folder, const char* file)
 	return path;
 }
 
-// COnf
-#define R_FULLSCREEN false
-#define R_BORDERLESS false
-#define R_RESIZABLE false
-#define R_FULLSCR_WINDOWED false
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
-#define WINDOW_TITLE "My Game"
-#define SCALE 1
-
 #endif

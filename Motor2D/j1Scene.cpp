@@ -6,6 +6,7 @@
 #include "j1Audio.h"
 #include "j1Render.h"
 #include "j1Window.h"
+#include "j1Map.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -29,22 +30,65 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	img = App->tex->Load("game_test/textures/test.png"); // No es bona idea posar "C:/folder_names/game_test..." perque nomes s'executara desde C:
-	App->audio->PlayMusic("game_test/audio/music/music_sadpiano.ogg"); // "/../" torna a la carpeta anterior
+	//App->map->Load("hello2.tmx");
+	App->map->Load("iso.tmx");
+	App->audio->PlayMusic("audio/music/folk.ogg");
+	
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	App->render->Blit(img, 0, 0);
+	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		App->LoadGame("save_game.xml");
+
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
+		App->SaveGame("save_game.xml");
+
+	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		App->render->camera.y += 1;
+
+	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		App->render->camera.y -= 1;
+
+	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		App->render->camera.x += 1;
+
+	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		App->render->camera.x -= 1;
+
+	// Volume Control
+	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_REPEAT)
+	{
+		App->audio->ChangeVolume(true);
+		App->audio->PlayMusic("audio/music/folk.ogg"); // No he trobat una forma millor per fer-ho
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
+	{
+		App->audio->ChangeVolume(false);
+		App->audio->PlayMusic("audio/music/folk.ogg");
+	}
+
+	App->map->Draw();
+
+	int x, y;
+	App->input->GetMousePosition(x, y);
+	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
+	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
+					App->map->data.width, App->map->data.height,
+					App->map->data.tile_width, App->map->data.tile_height,
+					App->map->data.tilesets.count(),
+					map_coordinates.x, map_coordinates.y);
+
+	App->win->SetTitle(title.GetString());
 	return true;
 }
 
@@ -53,7 +97,7 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 
-	if(App->input->GetKeyDown(SDLK_ESCAPE) == true)
+	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
 	return ret;

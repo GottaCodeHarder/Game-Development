@@ -2,6 +2,7 @@
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Render.h"
+#include "j1FileSystem.h"
 #include "j1Textures.h"
 
 #include "SDL_image/include/SDL_image.h"
@@ -17,7 +18,7 @@ j1Textures::~j1Textures()
 {}
 
 // Called before render is available
-bool j1Textures::Awake()
+bool j1Textures::Awake(pugi::xml_node& config)
 {
 	LOG("Init Image library");
 	bool ret = true;
@@ -62,7 +63,7 @@ bool j1Textures::CleanUp()
 SDL_Texture* const j1Textures::Load(const char* path)
 {
 	SDL_Texture* texture = NULL;
-	SDL_Surface* surface = IMG_Load(path);
+	SDL_Surface* surface = IMG_Load_RW(App->fs->Load(path), 1);
 
 	if(surface == NULL)
 	{
