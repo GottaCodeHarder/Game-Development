@@ -65,13 +65,13 @@ bool j1Scene::Update(float dt)
 		App->render->camera.x -= 1;
 
 	// Volume Control
-	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) // KP_PLUS
 	{
 		App->audio->ChangeVolume(true);
 		App->audio->PlayMusic("audio/music/folk.ogg"); // No he trobat una forma millor per fer-ho
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_REPEAT) // KP_MINUS
 	{
 		App->audio->ChangeVolume(false);
 		App->audio->PlayMusic("audio/music/folk.ogg");

@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1FileSystem.h"
 #include "j1Audio.h"
+#include "j1Render.h"
 
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
@@ -180,7 +181,21 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 void j1Audio::ChangeVolume(bool plusorminus)
 {
 	if (plusorminus)
-		volume += 5;
+		volume += 25;
 	else if (!plusorminus)
-		volume -= 5;
+		volume -= 25;
+}
+
+bool j1Audio::Load(pugi::xml_node& data) 
+{
+	volume = data.child("volume").attribute("data").as_int();
+
+	return true;
+}
+bool j1Audio::Save(pugi::xml_node& data) const
+{
+	pugi::xml_node vol = data.append_child("volume");
+	vol.append_attribute("value") = volume;
+
+	return true;
 }

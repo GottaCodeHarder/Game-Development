@@ -37,6 +37,10 @@ public:
 	// Change the value of Volume
 	void ChangeVolume(bool plusorminus);
 
+	// Prototipo de guardar
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
+
 private:
 
 	_Mix_Music*			music = NULL;

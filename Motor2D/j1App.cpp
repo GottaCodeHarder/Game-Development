@@ -35,11 +35,11 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(win);
 	AddModule(tex);
-	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
 
 	// render last to swap buffer
+	AddModule(audio);
 	AddModule(render);
 }
 
@@ -371,7 +371,7 @@ bool j1App::SavegameNow() const
 
 	if(ret == true)
 	{
-		std::stringstream stream;
+		std::stringstream stream; 
 		data.save(stream);
 
 		// we are done, so write data to disk
