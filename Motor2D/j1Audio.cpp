@@ -107,8 +107,6 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 
 	music = Mix_LoadMUS_RW(App->fs->Load(path), 1);
 
-	Mix_VolumeMusic(volume); // Magia del Volumen
-
 	if(music == NULL)
 	{
 		LOG("Cannot load music %s. Mix_GetError(): %s\n", path, Mix_GetError());
@@ -180,22 +178,29 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 // Change Volume
 void j1Audio::ChangeVolume(bool plusorminus)
 {
-	if (plusorminus)
+	if (plusorminus && (volume+25) <= 128)
+	{
 		volume += 25;
-	else if (!plusorminus)
+		Mix_VolumeMusic(volume);
+	}
+	if (!plusorminus && (volume-25) > 0)
+	{
 		volume -= 25;
+		Mix_VolumeMusic(volume);
+	}
 }
 
 bool j1Audio::Load(pugi::xml_node& data) 
 {
-	volume = data.child("volume").attribute("data").as_int();
+	volume = data.child("volume").attribute("value").as_int();
 
 	return true;
 }
+
 bool j1Audio::Save(pugi::xml_node& data) const
 {
 	pugi::xml_node vol = data.append_child("volume");
-	vol.append_attribute("value") = volume;
+	vol.append_attribute("value").set_value(volume);
 
 	return true;
 }

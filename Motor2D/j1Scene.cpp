@@ -65,16 +65,14 @@ bool j1Scene::Update(float dt)
 		App->render->camera.x -= 1;
 
 	// Volume Control
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) // KP_PLUS
+	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_DOWN)
 	{
 		App->audio->ChangeVolume(true);
-		App->audio->PlayMusic("audio/music/folk.ogg"); // No he trobat una forma millor per fer-ho
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_T) == KEY_REPEAT) // KP_MINUS
+	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_DOWN)
 	{
 		App->audio->ChangeVolume(false);
-		App->audio->PlayMusic("audio/music/folk.ogg");
 	}
 
 	App->map->Draw();
@@ -82,11 +80,12 @@ bool j1Scene::Update(float dt)
 	int x, y;
 	App->input->GetMousePosition(x, y);
 	iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
-					App->map->data.width, App->map->data.height,
-					App->map->data.tile_width, App->map->data.tile_height,
-					App->map->data.tilesets.count(),
-					map_coordinates.x, map_coordinates.y);
+	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d Volume:%d",
+		App->map->data.width, App->map->data.height,
+		App->map->data.tile_width, App->map->data.tile_height,
+		App->map->data.tilesets.count(),
+		map_coordinates.x, map_coordinates.y,
+		App->audio->volume);
 
 	App->win->SetTitle(title.GetString());
 	return true;
